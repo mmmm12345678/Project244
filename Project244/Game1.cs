@@ -24,6 +24,8 @@ namespace Project244
 
         // musik
         static SoundEffect musik;
+        static SoundEffect boom2;
+        static SoundEffectInstance soundEffectInstance ;
 
         static GraphicsDeviceManager _graphics;
         static SpriteBatch _spriteBatch;
@@ -32,12 +34,28 @@ namespace Project244
         static Texture2D zebra;
         static Rectangle zebra2;
         static Rectangle zebra3;
+
+
+        static Texture2D clouds1;
+        static Rectangle clouds1XY;
+        static Texture2D clouds2;
+        static Rectangle clouds2XY;
+        static Texture2D clouds3;
+        static Rectangle clouds3XY;
+        static Texture2D clouds4;
+        static Rectangle clouds4XY;
+        static Texture2D clouds5;
+        static Rectangle clouds5XY;
+
         static bool scoreett = true;
 
         //Menu
         static Texture2D button;
         static bool button2 = false;
+        static bool button22 = false;
+        static bool buttonStart2 = false;
         static MouseState UpButtontMou = new MouseState();
+        static MouseState UpButtontMou2 = new MouseState();
 
         // X Y button
         static Rectangle buttonXY;
@@ -60,6 +78,14 @@ namespace Project244
         static Texture2D GameOver;
         static Rectangle GameOverXY;
         static bool GameOverBoll = false;
+
+
+        static Texture2D GameOverScore;
+        static Rectangle GameOverScoreXY;
+
+
+        static Texture2D GameOverStartGame;
+        static Rectangle GameOverStartGameXY;
 
 
         //Animatiom bird
@@ -111,6 +137,8 @@ namespace Project244
         static Rectangle BackGroundXY;
         static Texture2D BackGround3;
         static Rectangle BackGroundXY3;
+        static Rectangle BackGroundXY32;
+        static Rectangle BackGroundXY322;
 
         //back Ground Animation
         static Texture2D BackGround2;
@@ -127,8 +155,12 @@ namespace Project244
         static Vector2 TextScoreXY = new Vector2(20, 20);
         //TEXT High Score 
         static SpriteFont TextScore2;
+        
         static string TextScoreNumber2 = "0";
-        static Vector2 TextScore2XY = new Vector2(385, 230);
+        static Vector2 TextScore2XY = new Vector2(250, 200);
+
+        static SpriteFont TextScore3;
+        static Vector2 TextScore22XY = new Vector2(550, 280);
 
         //FullScreen
         static int ScreenWidth;
@@ -294,6 +326,7 @@ namespace Project244
         //Score
         static int score;
         static int scorexy;
+        static int död = 40;
 
 
 
@@ -301,7 +334,8 @@ namespace Project244
         static Rectangle HiddenWall;
         static Rectangle HiddenWall2;
 
-        Color parrotColor = Color.White;
+        static Color parrotColor = Color.White;
+
         static MouseState mus = Mouse.GetState();
 
         public Game1()
@@ -350,7 +384,9 @@ namespace Project244
         protected override void LoadContent()
         {
             High_Score = SaveScore[0].Length;
-            // musik = Content.Load<SoundEffect>("musk/mustScore");
+            musik = Content.Load<SoundEffect>("musk/mustScore");
+            boom2 = Content.Load<SoundEffect>("musk/bird");
+            //soundEffectInstance = boom2.CreateInstance();
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -359,6 +395,19 @@ namespace Project244
             zebra2 = new Rectangle(300, 170, 20, 100);
             zebra3 = new Rectangle(300, 170, 20, 100);
 
+
+
+            // clouds //
+            clouds1 = Content.Load<Texture2D>("clouds/clouds1");
+            clouds1XY = new Rectangle(1500, 20, 100, 100);
+            clouds2 = Content.Load<Texture2D>("clouds/clouds2");
+            clouds2XY = new Rectangle(3000, 230, 100, 100);
+            clouds3 = Content.Load<Texture2D>("clouds/clouds3");
+            clouds3XY = new Rectangle(850, 260, 100, 100);
+            clouds4 = Content.Load<Texture2D>("clouds/clouds4");
+            clouds4XY = new Rectangle(2000, 100, 100, 100);
+            clouds5 = Content.Load<Texture2D>("clouds/clouds5");
+            clouds5XY = new Rectangle(1000, 50, 100, 100);
 
             // hiddem wall points  FullScreen
             zebra2_X = zebra2.X;
@@ -390,7 +439,14 @@ namespace Project244
             //GameOver
 
             GameOver = Content.Load<Texture2D>("GameOver/GameOver");
-            GameOverXY = new Rectangle(250, 50, 300, 200);
+            GameOverXY = new Rectangle(275, 30, 300, 200);
+
+            GameOverScore = Content.Load<Texture2D>("GameOver/Score");
+            GameOverScoreXY = new Rectangle(200, 250, 130, 100);
+
+            GameOverStartGame = Content.Load<Texture2D>("GameOver/startgame");
+            GameOverStartGameXY = new Rectangle(375, 250, 100, 100);
+
 
 
             //button FullScreen 
@@ -449,6 +505,9 @@ namespace Project244
             BackGroundXY = new Rectangle(0, 0, 800, 480);
             BackGround3 = Content.Load<Texture2D>("BackGround/BackGround");
             BackGroundXY3 = new Rectangle(0, 0, 800, 480);
+            BackGroundXY32 = new Rectangle(800, 0, 800, 480);
+            BackGroundXY322 = new Rectangle(1600, 0, 800, 480);
+
 
 
             BackGroundXY_X = BackGroundXY.X;
@@ -501,6 +560,7 @@ namespace Project244
             //TEXT 
             TextScore = Content.Load<SpriteFont>("File");
             TextScore2 = Content.Load<SpriteFont>("HighScore");
+            TextScore3 = Content.Load<SpriteFont>("Score");
 
             // TODO: use this.Content to load your game content here
         }
@@ -536,7 +596,7 @@ namespace Project244
             if (IF_levl == score)
             {
                 IF_levl += 5;
-                levl++;
+                levl += 0.5;
 
 
             }
@@ -574,7 +634,9 @@ namespace Project244
             TextScoreNumber += score.ToString();
 
 
-            if (buttonXY.Contains(mus.Position) == true && button2 == false)
+            StartGameButton();
+
+            if (buttonXY.Contains(mus.Position) == true && button2 == false && button22 == false)
             {
                 parrotColor = Color.Green;
                 buttonXY.Width = (int)button_WidthBig + 5;
@@ -600,7 +662,7 @@ namespace Project244
             }
 
             //Animation background
-            if (death == false)
+            if (GameOverBoll == false)
             {
 
                 BackGroundXY2.X -= (int)(Back_Ground_Speed + levl);
@@ -623,7 +685,7 @@ namespace Project244
             // Animation groundgrass
 
 
-            if (death == false)
+            if (GameOverBoll == false)
             {
 
 
@@ -669,8 +731,27 @@ namespace Project244
             //Enemy
             if (tubeXY.Intersects(birdXY) || tubeXY2.Intersects(birdXY) || tubedanXY.Intersects(birdXY) || tubedanXY2.Intersects(birdXY) || GroundGrass2.Intersects(birdXY) || GroundGrass22.Intersects(birdXY))
             {
+                död--;
+
+                if (GameOverBoll == false)
+                {
+
+                 birdXY.X -= (int)(tubeXY_Speed + levl);
+                 
+                }
+
+
+
+                if (död == 0)
+                {
+                    
+
+                 GameOverBoll = true;
+                    död = 40;
+                }
+
                 death = true;
-                GameOverBoll = true;
+                buttonStart2 = true;
                 ScreenInet = Int32.Parse(TextScoreNumber2);
                 if (score >= ScreenInet)
                 {
@@ -679,7 +760,11 @@ namespace Project244
                    
                     File.WriteAllLines(filnamnSC, SaveScore);
 
+
+
                 }
+
+
             }
 
             // Collection score
@@ -699,6 +784,12 @@ namespace Project244
                 ScreenHikbox = false;
             }
 
+            if (GameOverBoll == false)
+            {
+                clouds();
+
+            }
+          
             //random map
             random();
             random2();
@@ -785,6 +876,63 @@ namespace Project244
             spriteBatch.Draw(BackGround3, BackGroundXY3, Color.White);
             spriteBatch.End();
 
+           
+            
+            spriteBatch.Begin();
+            spriteBatch.Draw(BackGround3, BackGroundXY32, Color.White);
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(BackGround3, BackGroundXY322, Color.White);
+            spriteBatch.End();
+
+
+
+
+
+            //cclouds
+            if (clouds1XY.X > tubeXY_Delete)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(clouds1, clouds1XY, Color.White);
+                spriteBatch.End();
+
+            }
+
+
+            if (clouds2XY.X > tubeXY_Delete)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(clouds2, clouds2XY, Color.White);
+                spriteBatch.End();
+
+            }
+
+            if (clouds3XY.X > tubeXY_Delete)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(clouds3, clouds3XY, Color.White);
+                spriteBatch.End();
+
+            }
+
+
+            if (clouds4XY.X > tubeXY_Delete)
+            {
+
+                spriteBatch.Begin();
+                spriteBatch.Draw(clouds4, clouds4XY, Color.White);
+                spriteBatch.End();
+            }
+
+            if (clouds5XY.X > tubeXY_Delete)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(clouds5, clouds5XY, Color.White);
+                spriteBatch.End();
+
+            }
+
             // test score
             spriteBatch.Begin();
             spriteBatch.Draw(zebra, zebra2, Color.White);
@@ -833,7 +981,7 @@ namespace Project244
 
 
 
-            if (button2 == false)
+            if (button2 == false && button22 == false)
             {
                 spriteBatch.Begin();
                 spriteBatch.Draw(button, buttonXY, parrotColor);
@@ -922,8 +1070,14 @@ namespace Project244
                 {
 
                   spriteBatch.Begin();
-                  spriteBatch.Draw(GameOver, GameOverXY, parrotColor);                
+                  spriteBatch.Draw(GameOver, GameOverXY, Color.White);   
+                  spriteBatch.Draw(GameOverScore, GameOverScoreXY, Color.White);
+                  spriteBatch.Draw(GameOverStartGame, GameOverStartGameXY, parrotColor);
+                  
                   spriteBatch.DrawString(TextScore2, TextScoreNumber2, TextScore2XY, Color.Red);
+                  spriteBatch.DrawString(TextScore3, score.ToString(), TextScore22XY, Color.GreenYellow);
+
+                    
                   spriteBatch.End();
                 }
                 spriteBatch.Begin();
@@ -936,11 +1090,51 @@ namespace Project244
 
 
 
-
-
             }
 
             base.Draw(gameTime);
+        }
+
+        private static void StartGameButton()
+        {
+            if (GameOverStartGameXY.Contains(mus.Position) == true && buttonStart2 == true)
+            {
+
+                parrotColor = Color.Green;
+                GameOverStartGameXY.Width =  105;
+                GameOverStartGameXY.Height = 105;
+
+
+                MouseState currentStatemus2 = Mouse.GetState();
+                if (mus.LeftButton == ButtonState.Pressed && UpButtontMou2.LeftButton == ButtonState.Released)
+                {
+                     score = 0;
+                     buttonStart2 = false;
+                     GameOverBoll = false;
+                     death = false;
+                     
+                     Play = false;
+                     PlayGameBoll = false;
+                     button2 = false;
+                      
+                     tubeplay = false;
+                     birdXY = new Rectangle(300, 100, 45, 45);
+
+                     tubeXY = new Rectangle(810, tubeYLength, 67, 404);
+                     tubeXY2 = new Rectangle(810, tubeYLength2, 67, 404);
+                     tubedanXY = new Rectangle(810, tubedanY, 67, 404);
+                     tubedanXY2 = new Rectangle(810, tubedanY2, 67, 404);
+                }
+                UpButtontMou2 = currentStatemus2;
+            }
+            else
+            {
+                parrotColor = Color.White;
+                GameOverStartGameXY.Width = 100;
+                GameOverStartGameXY.Height = 100;
+
+            }
+
         }
         private static void Gameplay()
         {
@@ -950,7 +1144,10 @@ namespace Project244
             KeyboardState kb = Keyboard.GetState();
             if (kb.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space) || mus.LeftButton == ButtonState.Pressed && UpButtontMou.LeftButton == ButtonState.Released )
             {
-                
+               // soundEffectInstance.IsLooped = true;
+
+              //  soundEffectInstance.Play();
+                boom2.Play();
                 AnimationJump = true;
                 FallGravity = false;
                 TimeGravity = 5;
@@ -1170,7 +1367,10 @@ namespace Project244
             BackGroundXY22.Width = (int)(BackGroundXY22_Width * Preferred_Width);
             BackGroundXY22.Height = (int)(BackGroundXY22_Height * Preferred_Height);
 
-
+            PlayGameXY.X = (int)(PlayGame_X * Preferred_Width);
+            PlayGameXY.Y = (int)(PlayGame_Y * Preferred_Height);
+           PlayGameXY.Width = (int)(PlayGame_Width * Preferred_Width);
+            PlayGameXY.Height = (int)(PlayGame_Height * Preferred_Height);
 
 
 
@@ -1308,6 +1508,11 @@ namespace Project244
             BackGroundXY22.Height = (int)BackGroundXY22_Height;
 
 
+            PlayGameXY.X = (int)(PlayGame_X);
+            PlayGameXY.Y = (int)(PlayGame_Y);
+            PlayGameXY.Width = (int)(PlayGame_Width);
+            PlayGameXY.Height = (int)(PlayGame_Height);
+
             // back ground delet
             Back_Ground_Delete = Back_Ground_Delete_Save;
 
@@ -1353,11 +1558,104 @@ namespace Project244
             Screen = true;
 
         }
+
+        private static void clouds()
+        {
+
+            Random myRandon = new Random();
+
+            // clouds to Y Random
+            int clouds1Y = myRandon.Next(20, 240);
+
+            int clouds2Y = myRandon.Next(20, 120);
+
+            int clouds3Y = myRandon.Next(20, 200);
+
+            int clouds4Y = myRandon.Next(20, 250);
+
+            int clouds5Y = myRandon.Next(20, 230);
+
+
+            // clouds to X Random
+            int clouds1X = myRandon.Next(0, 40);
+
+
+
+
+            clouds1X--;
+            if (clouds1XY.X  < tubeXY_Delete && clouds1X == 0) 
+            {
+                clouds1XY.X = 850;
+                clouds1XY.Y = clouds1Y;
+            }
+          
+            if (clouds2XY.X < tubeXY_Delete && clouds1XY.X == 150)
+            {
+                clouds2XY.X = 850;
+                clouds2XY.Y = clouds2Y;
+            }
+         
+            if (clouds3XY.X < tubeXY_Delete && clouds2XY.X == 180)
+            {
+                clouds3XY.X = 850;
+                clouds3XY.Y = clouds3Y;
+            }
+            
+            if (clouds4XY.X < tubeXY_Delete && clouds3XY.X == 190)
+            {
+                clouds4XY.X = 850;
+                clouds4XY.Y = clouds4Y;
+            }
+
+           
+            if (clouds5XY.X < tubeXY_Delete && clouds5XY.X == 200)
+            {
+                clouds5XY.X = 850;
+                clouds5XY.Y = clouds5Y;
+            }
+
+
+
+
+            clouds1XY.X -= (int)(2 + levl);
+            clouds2XY.X -= (int)(2 + levl);
+            clouds3XY.X -= (int)(2 + levl);
+            clouds4XY.X -= (int)(2 + levl);
+            clouds5XY.X -= (int)(2 + levl);
+
+
+            if (BackGroundXY3.X < -825)
+            {
+                BackGroundXY3.X = 810;
+               
+            }
+
+            if (BackGroundXY32.X < -825)
+            {
+                BackGroundXY32.X = 810;
+
+            }
+
+
+            if (BackGroundXY322.X < -825)
+            {
+                BackGroundXY322.X = 810;
+
+            }
+            BackGroundXY32.X -= (int)(1 + levl);
+            BackGroundXY3.X -= (int)(1 + levl);
+            BackGroundXY322.X -= (int)(1 + levl);
+
+
+        }
+
         private static void map()
         {
 
 
-            if (tubeplay == true && death == false && Play == true)
+
+
+            if (tubeplay == true && GameOverBoll == false && Play == true)
             {
                 tubeXY.X -= (int)(tubeXY_Speed + levl);
                 tubedanXY.X -= (int)(tubeXY_Speed + levl);
@@ -1391,7 +1689,7 @@ namespace Project244
 
 
 
-            if (tune2 == true && death == false && Play == true)
+            if (tune2 == true && GameOverBoll == false && Play == true)
             {
                 tubeXY2.X -= (int)(tubeXY_Speed + levl);
                 tubedanXY2.X -= (int)(tubeXY_Speed + levl);
@@ -2030,3 +2328,4 @@ namespace Project244
         }
     }
 }
+// haasasasasas
