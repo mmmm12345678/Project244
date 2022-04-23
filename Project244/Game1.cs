@@ -25,8 +25,19 @@ namespace Project244
         // musik
         static SoundEffect musik;
         static SoundEffect boom2;
-        static SoundEffectInstance soundEffectInstance ;
+       
+        static SoundEffectInstance soundEffectInstance;
+        static SoundEffect GameOverMusik1;
+        static SoundEffect GameOverMusik2;
+        static bool GameOverMusikBoll = false;
+        static Song GameOverMusik4;
 
+        static Song ScoreMusik1;
+        static Song ScoreMusik2;
+
+        static SoundEffect BAckgroundMusik;
+
+        //////////////7
         static GraphicsDeviceManager _graphics;
         static SpriteBatch _spriteBatch;
         GraphicsDeviceManager graphics;
@@ -384,14 +395,27 @@ namespace Project244
         protected override void LoadContent()
         {
             High_Score = SaveScore[0].Length;
+            //musik
             musik = Content.Load<SoundEffect>("musk/mustScore");
             boom2 = Content.Load<SoundEffect>("musk/bird");
             //soundEffectInstance = boom2.CreateInstance();
 
+            GameOverMusik1 = Content.Load<SoundEffect>("musk/gameOver1");
+            GameOverMusik2 = Content.Load<SoundEffect>("musk/gameOver2");
+            GameOverMusik4 = Content.Load<Song>("musk/gameOver4");
+
+            ScoreMusik1 = Content.Load<Song>("musk/score1");
+            ScoreMusik2 = Content.Load<Song>("musk/score2");
+
+            BAckgroundMusik = Content.Load<SoundEffect>("musk/Background");
+           
+            soundEffectInstance = BAckgroundMusik.CreateInstance();
+            soundEffectInstance.IsLooped = true;
             spriteBatch = new SpriteBatch(GraphicsDevice);
+           
 
             // hiddem wall points
-            zebra = Content.Load<Texture2D>("zebra");
+            //zebra = Content.Load<Texture2D>("zebra");
             zebra2 = new Rectangle(300, 170, 20, 100);
             zebra3 = new Rectangle(300, 170, 20, 100);
 
@@ -567,7 +591,9 @@ namespace Project244
 
         protected override void Update(GameTime gameTime)
         {
+            
 
+             soundEffectInstance.Play();
             High_Score = SaveScore[0].Length;
             // FullScreen 
             if ((ScreenWidth != _graphics.GraphicsDevice.Viewport.Width) || (ScreenHeight != _graphics.GraphicsDevice.Viewport.Height))
@@ -746,12 +772,19 @@ namespace Project244
                 {
                     
 
-                 GameOverBoll = true;
+                   GameOverBoll = true;
                     död = 40;
+                    buttonStart2 = true;
+                    if (GameOverMusikBoll == false)
+                    {
+
+                        GameOverMusikR();
+                    }
+                   
                 }
 
                 death = true;
-                buttonStart2 = true;
+                
                 ScreenInet = Int32.Parse(TextScoreNumber2);
                 if (score >= ScreenInet)
                 {
@@ -774,7 +807,7 @@ namespace Project244
 
             if (zebra2.Intersects(birdXY) && ScreenHikbox == false || zebra3.Intersects(birdXY) && ScreenHikbox == false)
             {
-
+                ScoreMusikR();
                 score++;
                 ScreenHikbox = true;
 
@@ -934,13 +967,13 @@ namespace Project244
             }
 
             // test score
-            spriteBatch.Begin();
-            spriteBatch.Draw(zebra, zebra2, Color.White);
-            spriteBatch.End();
+            //spriteBatch.Begin();
+            //spriteBatch.Draw(zebra, zebra2, Color.White);
+            //spriteBatch.End();
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(zebra, zebra3, Color.White);
-            spriteBatch.End();
+            //spriteBatch.Begin();
+            //spriteBatch.Draw(zebra, zebra3, Color.White);
+            //spriteBatch.End();
 
 
             if (BackGroundXY2.X > (int)Back_Ground_Delete)
@@ -1120,6 +1153,7 @@ namespace Project244
                      tubeplay = false;
                      birdXY = new Rectangle(300, 100, 45, 45);
 
+                     GameOverMusikBoll = false;
                      tubeXY = new Rectangle(810, tubeYLength, 67, 404);
                      tubeXY2 = new Rectangle(810, tubeYLength2, 67, 404);
                      tubedanXY = new Rectangle(810, tubedanY, 67, 404);
@@ -1136,6 +1170,74 @@ namespace Project244
             }
 
         }
+
+        private static void ScoreMusikR()
+        {
+            Random myRandon = new Random();
+
+            // clouds to Y Random
+            int GameOverMusik = myRandon.Next(0, 2);
+
+            if (GameOverMusik == 0)
+            {
+                MediaPlayer.Play(ScoreMusik1);
+
+            }
+
+            if (GameOverMusik == 1)
+            {
+                MediaPlayer.Play(ScoreMusik2);
+
+            }
+        }
+        private static void GameOverMusikR()
+        {
+            GameOverMusikBoll = true;
+            Random myRandon = new Random();
+
+            // clouds to Y Random
+            int GameOverMusik = myRandon.Next(0, 5);
+
+            if (GameOverMusik == 0)
+            {
+                GameOverMusik1.Play();
+
+            }
+
+            if (GameOverMusik == 1)
+            {
+                GameOverMusik1.Play();
+
+            }
+
+
+            if (GameOverMusik == 2)
+            {
+
+                GameOverMusik2.Play();
+            }
+
+
+            if (GameOverMusik == 3)
+            {
+
+                GameOverMusik2.Play();
+            }
+
+
+            if (GameOverMusik == 4)
+            {
+
+                
+                MediaPlayer.Play(GameOverMusik4);
+            }
+
+            if (GameOverMusik == 5)
+            {
+
+                GameOverMusik2.Play();
+            }
+        }
         private static void Gameplay()
         {
 
@@ -1144,10 +1246,8 @@ namespace Project244
             KeyboardState kb = Keyboard.GetState();
             if (kb.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space) || mus.LeftButton == ButtonState.Pressed && UpButtontMou.LeftButton == ButtonState.Released )
             {
-               // soundEffectInstance.IsLooped = true;
 
-              //  soundEffectInstance.Play();
-                boom2.Play();
+                
                 AnimationJump = true;
                 FallGravity = false;
                 TimeGravity = 5;
@@ -1238,6 +1338,7 @@ namespace Project244
 
                     if (TmerAni == 4 || TmerAni == 2)
                     {
+                        
                         Anima1 = false;
                         Anima2 = true;
                         Anima3 = false;
@@ -1247,6 +1348,7 @@ namespace Project244
 
                     if (TmerAni == 3)
                     {
+                        boom2.Play();
                         Anima2 = false;
                         Anima3 = true;
                         birdXY.Y -= (int)(birdYJU_Raspond + levl);

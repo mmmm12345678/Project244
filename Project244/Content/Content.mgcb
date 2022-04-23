@@ -219,17 +219,59 @@
 /processorParam:TextureFormat=Compressed
 /build:HighScore.spritefont
 
+#begin musk/Background.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:musk/Background.wav
+
 #begin musk/bird.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:musk/bird.wav
 
+#begin musk/gameOver1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:musk/gameOver1.wav
+
+#begin musk/gameOver2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:musk/gameOver2.wav
+
+#begin musk/gameOver3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:musk/gameOver3.wav
+
+#begin musk/gameOver4.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:musk/gameOver4.mp3
+
 #begin musk/mustScore.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:musk/mustScore.wav
+
+#begin musk/score1.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:musk/score1.mp3
+
+#begin musk/score2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:musk/score2.mp3
 
 #begin Play.png
 /importer:TextureImporter
