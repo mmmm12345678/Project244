@@ -100,12 +100,80 @@ namespace Project244
 
 
         //Animatiom bird
+        static int AniBird = 14;
+
         static Texture2D bird1;
         static Texture2D bird2;
         static Texture2D bird3;
-        static bool Anima1 = true;
+
+
+        static Texture2D bird11;
+        static Texture2D bird12;
+        static Texture2D bird13;
+        static Texture2D bird14;
+        static Texture2D bird15;
+        static Texture2D bird16;
+        static Texture2D bird17;
+        static Texture2D bird18;
+
+
+
+        static Texture2D bird21;
+        static Texture2D bird22;
+        static Texture2D bird23;
+        static Texture2D bird24;
+        static Texture2D bird25;
+        static Texture2D bird26;
+        static Texture2D bird27;
+        static Texture2D bird28;
+
+
+        static Texture2D bird31;
+        static Texture2D bird32;
+        static Texture2D bird33;
+        static Texture2D bird34;
+        static Texture2D bird35;
+        static Texture2D bird36;
+        static Texture2D bird37;
+        static Texture2D bird38;
+
+
+
+        static bool Anima1 = false;
         static bool Anima2 = false;
         static bool Anima3 = false;
+
+        static bool Anima11 = false;
+        static bool Anima12 = false;
+        static bool Anima13 = false;
+        static bool Anima14 = false;
+        static bool Anima15 = false;
+        static bool Anima16 = false;
+        static bool Anima17 = false;
+        static bool Anima18 = false;
+
+        static bool Anima21 = false;
+        static bool Anima22 = false;
+        static bool Anima23 = false;
+        static bool Anima24 = false;
+        static bool Anima25 = false;
+        static bool Anima26 = false;
+        static bool Anima27 = false;
+        static bool Anima28 = false;
+
+
+
+        static bool Anima31 = false;
+        static bool Anima32 = false;
+        static bool Anima33 = false;
+        static bool Anima34 = false;
+        static bool Anima35 = false;
+        static bool Anima36 = false;
+        static bool Anima37 = false;
+        static bool Anima38 = false;
+
+        static int Aimbird = 0;
+
         static int TmerAni;
         static int tmerbird = 5;
 
@@ -150,6 +218,7 @@ namespace Project244
         static Rectangle BackGroundXY3;
         static Rectangle BackGroundXY32;
         static Rectangle BackGroundXY322;
+        static Rectangle BackGroundXY3222;
 
         //back Ground Animation
         static Texture2D BackGround2;
@@ -323,11 +392,14 @@ namespace Project244
         static float birdYJU_Raspond;
 
         // levl
-        static double IF_levl = 10;
+        static double IF_levl = 5;
         static double levl = 0;
-
+        static double levl1 = 0;
+        static double levl2 = 0;
+        static double levl3 = 0;
         // gar
         static double birdY = 0;
+        static int birdY1 = 0;
         static double tim = 2 ;
 
         //death
@@ -338,6 +410,9 @@ namespace Project244
         static int score;
         static int scorexy;
         static int död = 40;
+        static int död1 = 2;
+
+
 
 
 
@@ -348,6 +423,7 @@ namespace Project244
         static Color parrotColor = Color.White;
 
         static MouseState mus = Mouse.GetState();
+        static MouseState mus2 = Mouse.GetState();
 
         public Game1()
         {
@@ -483,6 +559,40 @@ namespace Project244
             bird1 = Content.Load<Texture2D>("gaemsplay/bird1");
             bird2 = Content.Load<Texture2D>("gaemsplay/bird");
             bird3 = Content.Load<Texture2D>("gaemsplay/bird3");
+
+
+
+
+            bird11 = Content.Load<Texture2D>("birdAbimation/bird1 (1)");
+            bird12 = Content.Load<Texture2D>("birdAbimation/bird1 (2)");
+            bird13 = Content.Load<Texture2D>("birdAbimation/bird1 (3)");
+            bird14 = Content.Load<Texture2D>("birdAbimation/bird1 (4)");
+            bird15 = Content.Load<Texture2D>("birdAbimation/bird1 (5)");
+            bird16 = Content.Load<Texture2D>("birdAbimation/bird1 (6)");
+            bird17 = Content.Load<Texture2D>("birdAbimation/bird1 (7)");
+            bird18 = Content.Load<Texture2D>("birdAbimation/bird1 (8)");
+
+
+
+            bird21 = Content.Load<Texture2D>("birdAbimation/bird");
+            bird22 = Content.Load<Texture2D>("birdAbimation/bird(1)");
+            bird23 = Content.Load<Texture2D>("birdAbimation/bird(2)");
+            bird24 = Content.Load<Texture2D>("birdAbimation/bird(3)");
+            bird25 = Content.Load<Texture2D>("birdAbimation/bird(4)");
+            bird26 = Content.Load<Texture2D>("birdAbimation/bird(5)");
+            bird27 = Content.Load<Texture2D>("birdAbimation/bird(6)");
+            bird28 = Content.Load<Texture2D>("birdAbimation/bird(7)");
+
+
+            bird31 = Content.Load<Texture2D>("birdAbimation/bird2 (1)");
+            bird32 = Content.Load<Texture2D>("birdAbimation/bird2 (2)");
+            bird33 = Content.Load<Texture2D>("birdAbimation/bird2 (3)");
+            bird34 = Content.Load<Texture2D>("birdAbimation/bird2 (4)");
+            bird35 = Content.Load<Texture2D>("birdAbimation/bird2 (5)");
+            bird36 = Content.Load<Texture2D>("birdAbimation/bird2 (6)");
+            bird37 = Content.Load<Texture2D>("birdAbimation/bird2 (7)");
+            bird38 = Content.Load<Texture2D>("birdAbimation/bird2 (8)");
+
             birdXY = new Rectangle(300, 100, 45, 45);
 
             // bird FullScreen 
@@ -531,6 +641,7 @@ namespace Project244
             BackGroundXY3 = new Rectangle(0, 0, 800, 480);
             BackGroundXY32 = new Rectangle(800, 0, 800, 480);
             BackGroundXY322 = new Rectangle(1600, 0, 800, 480);
+            BackGroundXY3222 = new Rectangle(2400, 0, 800, 480);
 
 
 
@@ -637,6 +748,7 @@ namespace Project244
                 _graphics.PreferredBackBufferHeight = 1080;
                 _graphics.ApplyChanges();
 
+
             }
             oldStateF11 = kb2;
 
@@ -677,6 +789,18 @@ namespace Project244
                     TmerAni = tmerbird;
                     TmerGravity = 5;
                     Play2 = true;
+
+
+
+
+                    Anima11 = false;
+                    Anima12 = false;
+                    Anima13 = false;
+                    Anima14 = false;
+                    Anima15 = false;
+                    Anima16 = false;
+                    Anima17 = false;
+                    Anima18 = false;
                 }
                 UpButtontMou = currentStatemus;
             }
@@ -851,19 +975,40 @@ namespace Project244
                 TmerAni2--;
                 if (TmerAni2 == 0)
                 {
-                    TmerAni2 = 20;
+                    TmerAni2 = 25;
                     
                 }
 
-                if (TmerAni2 == 20 || TmerAni2 == 4)
+                if (TmerAni2 == 25 || TmerAni2 == 5)
                 {
+
+                    Anima11 = false;
+                    Anima12 = false;
+                    Anima13 = false;
+                    Anima14 = false;
+                    Anima15 = false;
+                    Anima16 = false;
+                    Anima17 = false;
+                    Anima18 = false;
 
                     Anima1 = true;
                     Anima2 = false;
+                    Anima3 = false;
                 }
 
-                if (TmerAni2 == 16 || TmerAni2 == 8)
+                if (TmerAni2 == 20 || TmerAni2 == 10)
                 {
+
+                    Anima11 = false;
+                    Anima12 = false;
+                    Anima13 = false;
+                    Anima14 = false;
+                    Anima15 = false;
+                    Anima16 = false;
+                    Anima17 = false;
+                    Anima18 = false;
+
+
                     Anima1 = false;
                     Anima2 = true;
                     Anima3 = false;
@@ -871,8 +1016,21 @@ namespace Project244
 
                 }
 
-                if (TmerAni2 == 12)
+                if (TmerAni2 == 15)
                 {
+
+
+                    Anima11 = false;
+                    Anima12 = false;
+                    Anima13 = false;
+                    Anima14 = false;
+                    Anima15 = false;
+                    Anima16 = false;
+                    Anima17 = false;
+                    Anima18 = false;
+
+
+                    Anima11 = false;
                     Anima2 = false;
                     Anima3 = true;
                    
@@ -881,8 +1039,13 @@ namespace Project244
 
             }
 
+            if (PlayGameBoll == false)
+            {
 
-            
+                birdAbimatiom1();
+
+            }
+
 
 
 
@@ -905,19 +1068,40 @@ namespace Project244
             spriteBatch.Draw(BackGround, BackGroundXY, Color.White);
             spriteBatch.End();
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(BackGround3, BackGroundXY3, Color.White);
-            spriteBatch.End();
+
+
+
+
+
+            if(BackGroundXY3.X > (int)Back_Ground_Delete)
+            {
+
+              spriteBatch.Begin();
+              spriteBatch.Draw(BackGround3, BackGroundXY3, Color.White);
+              spriteBatch.End();
+            }
+
 
            
-            
-            spriteBatch.Begin();
-            spriteBatch.Draw(BackGround3, BackGroundXY32, Color.White);
-            spriteBatch.End();
+             if(BackGroundXY32.X > (int)Back_Ground_Delete)
+             {
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(BackGround3, BackGroundXY322, Color.White);
-            spriteBatch.End();
+              spriteBatch.Begin();
+              spriteBatch.Draw(BackGround3, BackGroundXY32, Color.White);
+              spriteBatch.End();
+ 
+             }
+
+
+            if (BackGroundXY322.X > (int)Back_Ground_Delete)
+            {
+
+             spriteBatch.Begin();
+             spriteBatch.Draw(BackGround3, BackGroundXY322, Color.White);
+             spriteBatch.End();
+ 
+            }
+
 
 
 
@@ -991,6 +1175,8 @@ namespace Project244
                 spriteBatch.End();
             }
 
+
+
             //  Animation groundgrass
 
             if (GroundGrass2.X > (int)Back_Ground_Delete)
@@ -1031,10 +1217,6 @@ namespace Project244
                 spriteBatch.End();
 
                 }
-                
-
-
-
                 if (Anima1 == true)
                 {
                     spriteBatch.Begin();
@@ -1055,6 +1237,194 @@ namespace Project244
                     spriteBatch.Draw(bird3, birdXY, parrotColor);
                     spriteBatch.End();
                 }
+
+
+                //  1 Anomal bird
+                if (Anima11 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird11, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima12 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird12, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima13 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird13, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima14 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird14, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima15 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird15, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima16 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird16, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima17 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird17, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima18 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird18, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                // 2 Anomal bird
+                if (Anima21 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird21, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima22 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird22, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima23 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird23, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima24 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird24, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima25 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird25, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima26 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird26, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima27 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird27, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima28 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird28, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+
+                // 3 Anomal bird
+                if (Anima31 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird31, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima32 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird32, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima33 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird33, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima34 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird34, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima35 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird35, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+                if (Anima36 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird36, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima37 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird37, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+                if (Anima38 == true)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(bird38, birdXY, parrotColor);
+                    spriteBatch.End();
+                }
+
+
+
+                //////////////////////
 
                 if (tubeXY.X > (int)tubeXY_Delete)
                 {
@@ -1130,7 +1500,8 @@ namespace Project244
 
         private static void StartGameButton()
         {
-            if (GameOverStartGameXY.Contains(mus.Position) == true && buttonStart2 == true)
+            mus2 = Mouse.GetState();
+            if (GameOverStartGameXY.Contains(mus2.Position) == true && buttonStart2 == true)
             {
 
                 parrotColor = Color.Green;
@@ -1139,18 +1510,35 @@ namespace Project244
 
 
                 MouseState currentStatemus2 = Mouse.GetState();
-                if (mus.LeftButton == ButtonState.Pressed && UpButtontMou2.LeftButton == ButtonState.Released)
+                if (mus2.LeftButton == ButtonState.Pressed && UpButtontMou2.LeftButton == ButtonState.Released)
                 {
-                     score = 0;
+
+                    PlayAnimaTime = 35;
+
+                    score = 0;
+
+                     levl =  0;
+                     IF_levl = 5;
+                     död1 = 2;
+
+                     levl1 = 0;
+                     levl2 = 0;
+                     levl3 = 0;
+
                      buttonStart2 = false;
                      GameOverBoll = false;
                      death = false;
                      
                      Play = false;
-                     PlayGameBoll = false;
-                     button2 = false;
-                      
-                     tubeplay = false;
+                     Play2 = false;
+                     PlayGameBoll = true;
+                     PlayAnima = false;
+                     button2 = true;
+                     
+
+                    //button22 = t;
+
+                    
                      birdXY = new Rectangle(300, 100, 45, 45);
 
                      GameOverMusikBoll = false;
@@ -1158,6 +1546,16 @@ namespace Project244
                      tubeXY2 = new Rectangle(810, tubeYLength2, 67, 404);
                      tubedanXY = new Rectangle(810, tubedanY, 67, 404);
                      tubedanXY2 = new Rectangle(810, tubedanY2, 67, 404);
+
+
+                    Anima11 = false;
+                    Anima12 = false;
+                    Anima13 = false;
+                    Anima14 = false;
+                    Anima15 = false;
+                    Anima16 = false;
+                    Anima17 = false;
+                    Anima18 = false;
                 }
                 UpButtontMou2 = currentStatemus2;
             }
@@ -1238,9 +1636,897 @@ namespace Project244
                 GameOverMusik2.Play();
             }
         }
+
+
+        private static void birdAbimatiom1()
+        {
+
+
+            if (AniBird == 14)
+            {
+                Aimbird = 1;
+
+                Anima11 = true;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+
+            }
+
+
+            if (AniBird == 12)
+            {
+                Aimbird = 2;
+                Anima11 = false;
+                Anima12 = true;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+
+            if (AniBird == 10)
+            {
+                Aimbird = 3;
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = true;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+            }
+
+            if (AniBird == 8)
+            {
+                Aimbird = 4;
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = true;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+            }
+
+
+
+            if (AniBird == 6)
+            {
+                Aimbird = 5;
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = true;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+            if (AniBird == 4)
+            {
+                Aimbird = 6;
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = true;
+                Anima17 = false;
+                Anima18 = false;
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+
+            if (AniBird == 2)
+            {
+                Aimbird = 7;
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = true;
+                Anima18 = false;
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+
+            if (AniBird == 0)
+            {
+                Aimbird = 8;
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = true;
+
+
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+        }
+
+        private static void birdAbimatiom2()
+        {
+
+
+            if (AniBird == 14 || Aimbird == 1)
+            {
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+                Anima21 = true;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+
+            if (AniBird == 12 || Aimbird == 2)
+            {
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+                Anima21 = false;
+                Anima22 = true;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+
+            if (AniBird == 10 || Aimbird == 3)
+            {
+
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = true;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+
+            }
+
+            if (AniBird == 8 || Aimbird == 4)
+            {
+
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = true;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+
+
+            if (AniBird == 6 || Aimbird == 5)
+            {
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = true;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+            }
+
+            if (AniBird == 4 || Aimbird == 6)
+            {
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = true;
+                Anima27 = false;
+                Anima28 = false;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+            }
+
+
+            if (AniBird == 2 || Aimbird == 7)
+            {
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = true;
+                Anima28 = false;
+
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+
+
+            if (AniBird == 0 || Aimbird == 8)
+            {
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = true;
+
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+            }
+        }
+
+
+        private static void birdAbimatiom3()
+        {
+
+
+            if (AniBird == 14 )
+            {
+
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = true;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+
+            if (AniBird == 12)
+            {
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = true;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+
+            if (AniBird == 10)
+            {
+
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = true;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+            if (AniBird == 8)
+            {
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = true;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+
+
+            if (AniBird == 6)
+            {
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = true;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+            if (AniBird == 4)
+            {
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = true;
+                Anima37 = false;
+                Anima38 = false;
+
+
+            }
+
+
+            if (AniBird == 2)
+            {
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = true;
+                Anima38 = false;
+
+
+            }
+
+
+            if (AniBird == 0)
+            {
+                Anima11 = false;
+                Anima12 = false;
+                Anima13 = false;
+                Anima14 = false;
+                Anima15 = false;
+                Anima16 = false;
+                Anima17 = false;
+                Anima18 = false;
+
+
+                Anima21 = false;
+                Anima22 = false;
+                Anima23 = false;
+                Anima24 = false;
+                Anima25 = false;
+                Anima26 = false;
+                Anima27 = false;
+                Anima28 = false;
+
+                Anima31 = false;
+                Anima32 = false;
+                Anima33 = false;
+                Anima34 = false;
+                Anima35 = false;
+                Anima36 = false;
+                Anima37 = false;
+                Anima38 = true;
+
+
+            }
+        }
         private static void Gameplay()
         {
 
+
+            if (AniBird < 0)
+            {
+                AniBird = 0;
+            }
+
+
+            if (AniBird > 14)
+            {
+                AniBird = 14;
+            }
 
             TimeGravity--;
             KeyboardState kb = Keyboard.GetState();
@@ -1252,16 +2538,30 @@ namespace Project244
                 FallGravity = false;
                 TimeGravity = 5;
 
+                död1--;
+                if (död1 == 0)
+                {
+                    Play2 = true;
+                }
+
+                if ( död1 < 0)
+                {
+                    död1 = 0;
+                }
                
                if (Play2 == true)
                {
 
                    PlayGameBoll = false;
+                    tubeplay =true;
 
-                  if (PlayGameBoll == false)
-                  {
+                    Anima1 = false;
+                    Anima2 = false;
+                    Anima3 = false;
+                    if (PlayGameBoll == false)
+                    {
                     Play = true;
-                  }
+                    }
                   ////
                     birdY = 0;
                     birdY += birdY_Raspond/2;
@@ -1292,19 +2592,35 @@ namespace Project244
                         tim--;
                         if (birdY < birdY_Raspond && tim == 1)
                         {
+                            AniBird--;
+                            if (AniBird < 0)
+                            {
+                                AniBird = 0;
+                            }
+
+
 
                             birdY++;
+                   
                             tim = 2;
                         }
 
                         if (tim <= 0)
                         {
+                            AniBird--;
+                            if (AniBird < 0)
+                            {
+                                AniBird = 0;
+                            }
                             tim = 0;
                             tim = 2;
                         }
 
                         
                         birdXY.Y += (int)(birdY + levl);
+                        AniBird -= 1;
+
+
 
 
                     }
@@ -1317,6 +2633,11 @@ namespace Project244
                 //animation
                 if (TmerAni >= 0 && AnimationJump == true)
                 {
+                    AniBird++;
+                    if (AniBird > 14)
+                    {
+                        AniBird = 14;
+                    }
                     TmerAni--;
                 }
 
@@ -1331,27 +2652,36 @@ namespace Project244
 
                     if (TmerAni == 5 || TmerAni == 1)
                     {
-
-                        Anima1 = true;
-                        Anima2 = false;
+                        birdAbimatiom1();
                     }
 
                     if (TmerAni == 4 || TmerAni == 2)
                     {
-                        
-                        Anima1 = false;
-                        Anima2 = true;
-                        Anima3 = false;
 
+                        birdAbimatiom2();
+                        AniBird++;
+                        if (AniBird > 14)
+                        {
+                            AniBird = 14;
+                        }
 
                     }
 
                     if (TmerAni == 3)
                     {
+                        birdAbimatiom3();
                         boom2.Play();
-                        Anima2 = false;
-                        Anima3 = true;
+                        //Anima21 = false;
+                        //Anima31 = true;
                         birdXY.Y -= (int)(birdYJU_Raspond + levl);
+
+                        AniBird++;
+                     
+                        if (AniBird > 14)
+                        {
+                            AniBird = 14;
+                        }
+
 
                     }
 
@@ -1729,7 +3059,8 @@ namespace Project244
             if (BackGroundXY3.X < -825)
             {
                 BackGroundXY3.X = 810;
-               
+
+
             }
 
             if (BackGroundXY32.X < -825)
@@ -1742,10 +3073,12 @@ namespace Project244
             if (BackGroundXY322.X < -825)
             {
                 BackGroundXY322.X = 810;
-
+    
             }
-            BackGroundXY32.X -= (int)(1 + levl);
-            BackGroundXY3.X -= (int)(1 + levl);
+
+
+            BackGroundXY32.X -=  (int)(1 + levl);
+            BackGroundXY3.X -=   (int)(1 + levl);
             BackGroundXY322.X -= (int)(1 + levl);
 
 
